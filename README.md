@@ -1,5 +1,7 @@
 # Example of a React App using a Headless Drupal 8 API
 
+## This will not work out of the box, it's for my own reference.
+
 ### Backend using JSONAPI Drupal Module.
 
 - Create Drupal site
