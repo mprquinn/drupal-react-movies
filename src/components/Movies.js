@@ -24,10 +24,9 @@ class Movies extends Component {
     if (this.state.loaded) {
       return (
         <div className="Movies">
-        <h1>Movies</h1>
+            <Genres />
           <hr />
-              <Genres />
-          <hr />
+          <h1>Movies</h1>
           <ul>
             {this.state.movies.map(movie =>
                 <li key={movie.attributes.uuid}>

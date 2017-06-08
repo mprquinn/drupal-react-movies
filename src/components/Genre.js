@@ -41,12 +41,15 @@ class Genre extends Component {
           )
         })
       } else {
-        movieList = `No ${this.state.genre} movies.`;
+        movieList = <p>No {this.state.genre} movies.</p>;
       }
       return (
         <div className="Genre">
         <h1>{this.state.genre}</h1>
           {movieList}
+          <p>
+            <Link to="/movies/genres" className="button">Back to Genres</Link>
+          </p>
         </div>
       );
     } else {

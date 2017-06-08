@@ -4,7 +4,7 @@ import Movie from './components/Movie';
 import Genres from './components/Genres';
 import Genre from './components/Genre';
 import Home from './Home';
-// import './App.css';
+import './App.css';
 import {
   BrowserRouter as Router,
   Route,
@@ -16,7 +16,10 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className="container">
+          <div className="header">
+            <h1>Mike's Dumb Drupal React Thing</h1>
+          </div>
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/movies">Movies</Link></li>
