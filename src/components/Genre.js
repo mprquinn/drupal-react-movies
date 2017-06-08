@@ -3,6 +3,7 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Poster from './Poster';
 import style from '../css/Button.css';
 
 class Genre extends Component {
@@ -10,35 +11,48 @@ class Genre extends Component {
     super(props);
     
     this.state = {
-    	genre: {},
+    	movies: {},
     	loaded: false
     }
   }
   componentDidMount() {
-    // fetch('http://127.0.0.1/api-test/jsonapi/taxonomy_term/genres')
-    //   .then(response => response.json())
-    //   .then(genres => {
-    //     this.setState({ genres:genres.data, loaded: true })
-    //   })
+    const genre = this.props.match.params.genre,
+          url = `http://127.0.0.1/api-test/jsonapi/node/movie/?filter[field_genre.name][value]=${genre}`;
+    this.setState({
+      genre
+    });
+    fetch(url)
+      .then(response => response.json())
+      .then(movies => {
+        this.setState({ movies:movies.data, loaded: true })
+      })
   } 
   render() {
     if (this.state.loaded) {
+      let movieList = null;
+      if (this.state.movies.length > 0) {
+        movieList = this.state.movies.map(movie => {
+          return(
+              <li key={movie.attributes.uuid}>
+                <h3>{movie.attributes.title}</h3>
+                <Poster uuid={movie.attributes.uuid} />
+                <Link className="button" to={`/movies/${movie.attributes.field_slug}`}>View Movie</Link>
+              </li>
+          )
+        })
+      } else {
+        movieList = `No ${this.state.genre} movies.`;
+      }
       return (
         <div className="Genre">
-        <h1>Genre</h1>
-          
+        <h1>{this.state.genre}</h1>
+          {movieList}
         </div>
       );
     } else {
       return (
         <div className="Genre">
-        <h1>Genre</h1>
-          <ul>
-            <li>Loading...</li>
-            <li>
-			  <a href="#" className="button">Genre</a>
-            </li>
-          </ul>
+            <h1>Loading...</h1>
         </div>
       )
     }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Movies from './components/Movies';
 import Movie from './components/Movie';
 import Genres from './components/Genres';
+import Genre from './components/Genre';
 import Home from './Home';
 // import './App.css';
 import {
@@ -25,6 +26,7 @@ class App extends Component {
           <hr/>
           <Switch>
               <Route exact path="/" component={Home}/>
+              <Route path="/movies/genres/:genre" component={Genre}/>
               <Route path="/movies/genres" component={Genres}/>
               <Route path="/movies/:slug" component={Movie}/>
               <Route path="/movies" component={Movies}/>
